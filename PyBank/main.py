@@ -40,6 +40,7 @@ with open(budgetdata_csv) as csvfile:
             GreatestLoss=RecentChange
             GreatestLossMonth=str(row[0])
 
+AvgChange="%.2f" % (TotalChange/(TotalMonths-1))
 #print analysis to terminal and export a test file with results
 output_path = os.path.join("Analysis", "PyBankResults.txt")
 with open(output_path, 'w') as txtfile:
@@ -47,4 +48,13 @@ with open(output_path, 'w') as txtfile:
     print("Financial Analysis")
     print("-----------------------", file=txtfile)
     print("-----------------------")
- 
+    print(f"Total Months: {TotalMonths}", file=txtfile)
+    print(f"Total Months: {TotalMonths}")
+    print(f"Total: ${TotalProfitLoss}", file=txtfile)
+    print(f"Total: ${TotalProfitLoss}")
+    print(f"Average Change: ${AvgChange}", file=txtfile)
+    print(f"Average Change: ${AvgChange}")
+    print(f"Greatest Increase in Profits: {GreatestProfitMonth} (${GreatestProfit})", file=txtfile)
+    print(f"Greatest Increase in Profits: {GreatestProfitMonth} (${GreatestProfit})")
+    print(f"Greatest Decrease in Profits: {GreatestLossMonth} (${GreatestLoss})", file=txtfile)
+    print(f"Greatest Decrease in Profits: {GreatestLossMonth} (${GreatestLoss})")

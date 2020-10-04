@@ -2,22 +2,55 @@ import os
 import csv
 electiondata_csv = os.path.join("Resources", "election_data.csv")
 
+Votes=[]
 TotalVotes=0
-
+CandidateVotes=[]
+VotePercentage=[]
+VoteWinner=0
+Winner=0
 
 #open and read csv
 with open(electiondata_csv) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=",")
 #read the header row first
     csv_header = next(csv_reader)
+#create dictionary
+    CandidatesDictionary={}
 
-    for row in csv_reader:  
+    for Candidate in csv_reader:  
 #total number of votes cast
-        electiondata_csv = {'voter id':}
+        TotalVotes+=1
+        Candidate=(Candidate[2])
 #list of candidates who received votes
+        if Candidate in CandidatesDictionary:
+            CandidatesDictionary[Candidate]+=1
+        else:
+            CandidatesDictionary[Candidate]=1
+    #print(CandidatesDictionary)
 
-#percentage of votes each candidate won
+#percentage and total votes for each candidate. Output election winner
 
-#total number of votes each candidate won
+#output_path = os.path.join("Analysis", "PyPollResults.txt")
+#with open(output_path, 'w') as txtfile:
+#print("Election Results", file=txtfile)
+print("Election Results")
+#print("----------------------", file=txtfile)
+print("----------------------")
+#print(f"Total Votes: {TotalVotes}", file=txtfile)
+print(f"Total Votes: {TotalVotes}")
+#print("----------------------", file=txtfile)
+print("----------------------")
+for Candidate, CandidateVotes in CandidatesDictionary.items():
+    VotePercentage=(round(CandidateVotes/TotalVotes*100,3))
+    #print(Candidate+":  " + str(VotePercentage) + "%" + " ("+str(CandidateVotes)+")", file=txtfile)
+    print(Candidate+":  " + str(VotePercentage) + "%" + " ("+str(CandidateVotes)+")")
 
-#Winner of the election based on popular vote
+    if CandidateVotes > VoteWinner:
+        VoteWinner = CandidateVotes
+        Winner = Candidate
+#print("----------------------", file=txtfile)
+print("----------------------")
+#print("Winner: {VoteWinner}", file=txtfile)
+print(f"Winner: {Winner}")   
+#print("---------------------", file=txtfile)
+#print("---------------------")

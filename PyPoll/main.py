@@ -26,31 +26,34 @@ with open(electiondata_csv) as csvfile:
             CandidatesDictionary[Candidate]+=1
         else:
             CandidatesDictionary[Candidate]=1
-    #print(CandidatesDictionary)
 
 #percentage and total votes for each candidate. Output election winner
 
-#output_path = os.path.join("Analysis", "PyPollResults.txt")
-#with open(output_path, 'w') as txtfile:
-#print("Election Results", file=txtfile)
-print("Election Results")
-#print("----------------------", file=txtfile)
-print("----------------------")
-#print(f"Total Votes: {TotalVotes}", file=txtfile)
-print(f"Total Votes: {TotalVotes}")
-#print("----------------------", file=txtfile)
-print("----------------------")
-for Candidate, CandidateVotes in CandidatesDictionary.items():
-    VotePercentage=(round(CandidateVotes/TotalVotes*100,3))
-    #print(Candidate+":  " + str(VotePercentage) + "%" + " ("+str(CandidateVotes)+")", file=txtfile)
-    print(Candidate+":  " + str(VotePercentage) + "%" + " ("+str(CandidateVotes)+")")
+#print to terminal, export results
+output_path = os.path.join("Analysis", "PyPollResults.txt")
+with open(output_path, 'w') as txtfile:
 
-    if CandidateVotes > VoteWinner:
-        VoteWinner = CandidateVotes
-        Winner = Candidate
-#print("----------------------", file=txtfile)
-print("----------------------")
-#print("Winner: {VoteWinner}", file=txtfile)
-print(f"Winner: {Winner}")   
-#print("---------------------", file=txtfile)
-#print("---------------------")
+    print("Election Results", file=txtfile)
+    print("Election Results")
+    print("----------------------", file=txtfile)
+    print("----------------------")
+    print(f"Total Votes: {TotalVotes}", file=txtfile)
+    print(f"Total Votes: {TotalVotes}")
+    print("----------------------", file=txtfile)
+    print("----------------------")
+    
+    for Candidate, CandidateVotes in CandidatesDictionary.items():
+        VotePercentage=(round(CandidateVotes/TotalVotes*100,3))
+        print(Candidate+":  " + str(VotePercentage) + "%" + " ("+str(CandidateVotes)+")", file=txtfile)
+        print(Candidate+":  " + str(VotePercentage) + "%" + " ("+str(CandidateVotes)+")")
+
+        if CandidateVotes > VoteWinner:
+            VoteWinner = CandidateVotes
+            Winner = Candidate
+    
+    print("----------------------", file=txtfile)
+    print("----------------------")
+    print(f"Winner: {Winner}", file=txtfile)
+    print(f"Winner: {Winner}")   
+    print("---------------------", file=txtfile)
+    print("---------------------")

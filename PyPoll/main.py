@@ -2,10 +2,7 @@ import os
 import csv
 electiondata_csv = os.path.join("Resources", "election_data.csv")
 
-Votes=[]
 TotalVotes=0
-CandidateVotes=[]
-VotePercentage=[]
 VoteWinner=0
 Winner=0
 
